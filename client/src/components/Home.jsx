@@ -1,14 +1,7 @@
-import Home from "./components/Home"
-
-
-
-
-function App() {
-  
-
-  return (
-    <>
-       <header>
+export default function Home(){
+    return (
+        <>
+  <header>
     {/* Navigation */}
     <nav>
       <a className="home" href="#">
@@ -69,9 +62,7 @@ function App() {
       </div>
     </div>
   </section>
-      
-    </>
-  )
-}
+</>
 
-export default App
+    )
+}
