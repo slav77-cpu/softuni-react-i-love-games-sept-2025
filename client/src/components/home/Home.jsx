@@ -1,8 +1,10 @@
+import Footer from "../footer/Footer";
+
 export default function Home(){
     return (
-        <>
+        
  
-  {/*Home Page*/}
+  
   <section id="welcome-world">
     <div className="welcome-message">
       <h2>ALL new games are</h2>
@@ -43,8 +45,9 @@ export default function Home(){
         </div>
       </div>
     </div>
+    
   </section>
-</>
+
 
     )
 }
