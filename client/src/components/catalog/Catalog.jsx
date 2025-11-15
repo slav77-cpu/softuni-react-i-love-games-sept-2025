@@ -11,7 +11,6 @@ export default function Catalog() {
         try {
             const response= await fetch(BASE_URL);
             const result = await response.json();
-            
             setgames(Object.values(result));
         } catch (err) {
             alert(err.message);
