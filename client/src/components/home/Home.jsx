@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import GameCard from "../game-card/GameCard";
+import request from "../../utils/request";
 
 export default function Home(){
   const [latestGames,setLatestGames]=useState([]);
 
   useEffect(()=>{
-fetch('http://localhost:3030/jsonstore/games')
-.then(res=>res.json())
+    request('http://localhost:3030/jsonstore/games')
 .then(data=> {
     const recentGames=Object.values(data)
     .sort((a,b)=>b._createdOn - a._createdOn).slice(0,3);
     setLatestGames(recentGames);
-})
+}).catch(err=>alert(err.message));
   },[])
   return (
   <section id="welcome-world">
