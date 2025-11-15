@@ -26,8 +26,9 @@ fetch('http://localhost:3030/jsonstore/games')
       <div id="latest-wrap">
         {/* Display div: with information about every game (if any) */}
         <div className="home-container">
+          {latestGames.length===0 && <p className="no-articles">No games yet</p>}
          {latestGames.map(game=> <Game key={game._id} {...game}/>)}
-            {/* <p class="no-articles">No games yet</p> */}
+            
             {/* Display paragraph: If there is no games  */}
         </div>
       </div>
