@@ -1,10 +1,20 @@
+import { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
+import Game from "../game/Game";
 
 export default function Home(){
-    return (
-        
- 
-  
+  const [latestGames,setLatestGames]=useState([]);
+
+  useEffect(()=>{
+fetch('http://localhost:3030/jsonstore/games')
+.then(res=>res.json())
+.then(data=> {
+    const recentGames=Object.values(data)
+    .sort((a,b)=>b._createdOn - a._createdOn).slice(0,3);
+    setLatestGames(recentGames);
+})
+  },[])
+  return (
   <section id="welcome-world">
     <div className="welcome-message">
       <h2>ALL new games are</h2>
@@ -16,32 +26,9 @@ export default function Home(){
       <div id="latest-wrap">
         {/* Display div: with information about every game (if any) */}
         <div className="home-container">
-          <div className="game">
-            <img src="./images/witcher.png" alt="Elden Ring" />
-            <div className="details-overlay">
-              <p className="name">The Witcher 3</p>
-              <p className="genre">Open World</p>
-              <button className="details-button">Details</button>
-            </div>
-          </div>
-          <div className="game">
-            <img src="./images/elden ring.png" alt="Elden Ring" />
-            <div className="details-overlay">
-              <p className="name">Elden Ring</p>
-              <p className="genre">Action RPG</p>
-              <button className="details-button">Details</button>
-            </div>
-          </div>
-          <div className="game">
-            <img src="./images/minecraft.png" alt="Minecraft" />
-            <div className="details-overlay">
-              <p className="name">Minecraft</p>
-              <p className="genre">Sandbox</p>
-              <button className="details-button">Details</button>
-            </div>
-            {/* Display paragraph: If there is no games  */}
+         {latestGames.map(game=> <Game key={game._id} {...game}/>)}
             {/* <p class="no-articles">No games yet</p> */}
-          </div>
+            {/* Display paragraph: If there is no games  */}
         </div>
       </div>
     </div>
