@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
-import Game from "../game/Game";
+import GameCard from "../game-card/GameCard";
 
 export default function Home(){
   const [latestGames,setLatestGames]=useState([]);
@@ -27,7 +27,7 @@ fetch('http://localhost:3030/jsonstore/games')
         {/* Display div: with information about every game (if any) */}
         <div className="home-container">
           {latestGames.length===0 && <p className="no-articles">No games yet</p>}
-         {latestGames.map(game=> <Game key={game._id} {...game}/>)}
+         {latestGames.map(game=> <GameCard key={game._id} {...game}/>)}
             
             {/* Display paragraph: If there is no games  */}
         </div>
